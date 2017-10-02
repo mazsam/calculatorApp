@@ -31,25 +31,25 @@ export default class calculatorApp extends Component {
 
     this.initialState = {
         previousInputValue: 0,
-        inputValue: 0,
+        inputValue:0,
         selectedSymbol: null
     };
 
     this.state = this.initialState;
 }
 
-  render() {
-    return (
-      <View style={ Style.rootContainer }>
-        <View style={ Style.displayContainer}>
-          <Text style={ Style.displayText}>{this.state.inputValue}</Text>
-        </View>
-        <View style={ Style.inputContainer}>
-          {this._renderInputButtons()}
-        </View>
+render() {
+  return (
+      <View style={Style.rootContainer}>
+          <View style={Style.displayContainer}>
+              <Text style={Style.displayText}>{this.state.inputValue}</Text>
+          </View>
+          <View style={Style.inputContainer}>
+              {this._renderInputButtons()}
+          </View>
       </View>
-    );
-  }
+  );
+}
 
   _renderInputButtons() {
 
@@ -86,14 +86,20 @@ export default class calculatorApp extends Component {
     
     switch (typeof input){
       case 'number':
-      //alert(input);
+      // alert(input);
       //alert("this is Number"); 
         //alert(this._handleNumberInput(input));
         return this._handleNumberInput(input)
+        // let inputValue = (this.state.inputValue * 10) + input;
         
+        //     this.setState({
+        //         inputValue: inputValue
+        //     });
+        break;
       case 'string':
       //alert("This is String");
-        return this._handleNumberInput(input)
+        return this._handleStringInput(input)
+      break;
     }
   }
 
@@ -105,7 +111,7 @@ export default class calculatorApp extends Component {
     });
 }
 
-  _handleNumberInput(str){
+  _handleStringInput(str){
     switch (str){
       case '/':
       case '*':
@@ -137,7 +143,7 @@ export default class calculatorApp extends Component {
             break;
 
     case 'c':
-        this.setState({inputValue: 10});
+        this.setState({inputValue: 0});
         break;
     }
   }
